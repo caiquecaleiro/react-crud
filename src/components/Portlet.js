@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Portlet = (props) => {
+function Portlet(props) {
   return (
     <div className="portlet light">
       <div className="portlet-title">
@@ -13,7 +13,7 @@ const Portlet = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Portlet.propTypes = {
   title: PropTypes.string.isRequired,
