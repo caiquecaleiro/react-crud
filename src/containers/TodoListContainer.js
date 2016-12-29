@@ -9,7 +9,7 @@ import PageContainer from '../components/PageContainer';
 import { todoCells } from '../constants/todoCells';
 import { fetchTodos, deleteTodo } from '../actions/index';
 
-class GridContainer extends Component {
+class TodoListContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -22,6 +22,10 @@ class GridContainer extends Component {
     this.onDelete = this.onDelete.bind(this);
   }
 
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
   componentWillMount() {
     this.props.fetchTodos();
   }
@@ -33,7 +37,7 @@ class GridContainer extends Component {
   }
 
   onNew() {
-    console.log('new');
+    this.context.router.push('/todo');
   }
 
   onEdit() {
@@ -84,7 +88,7 @@ class GridContainer extends Component {
   }  
 }
 
-GridContainer.propTypes = {
+TodoListContainer.propTypes = {
   todos: PropTypes.array.isRequired,
   fetchTodos: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
@@ -98,4 +102,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchTodos, deleteTodo })(GridContainer);
+export default connect(mapStateToProps, { fetchTodos, deleteTodo })(TodoListContainer);
