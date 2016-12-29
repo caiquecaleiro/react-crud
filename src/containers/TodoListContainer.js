@@ -41,7 +41,10 @@ class TodoListContainer extends Component {
   }
 
   onEdit() {
-    console.log('edit');
+    this.context.router.push({
+      pathname: '/todo',
+      query: { id: this.state.selectedRow._id }
+    });
   }
 
   onDelete() {
