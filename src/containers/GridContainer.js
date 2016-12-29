@@ -5,6 +5,7 @@ import Grid from '../components/Grid';
 import Portlet from '../components/Portlet';
 import CrudButtons from '../components/CrudButtons';
 import Alert from '../components/Alert';
+import PageContainer from '../components/PageContainer';
 import { todoCells } from '../constants/todoCells';
 import { fetchTodos, deleteTodo } from '../actions/index';
 
@@ -56,27 +57,29 @@ class GridContainer extends Component {
 
   render() {
     return (
-      <Portlet title="Todos">
-        <div className="row">
-          <div className="col-md-12">
-            <Grid 
-              data={this.props.todos} 
-              cells={todoCells}
-              onRowSelect={this.onRowSelect.bind(this)}
-              selectedRow={this.state.selectedRow}
-              objectKey="_id" 
-            />
-            <CrudButtons 
-              onNew={this.onNew} 
-              onEdit={this.onEdit} 
-              onDelete={this.onDelete}
-              editDisabled={!this.state.selectedRow._id}
-              deleteDisabled={!this.state.selectedRow._id} 
-            />
-            {this.renderAlert()}          
+      <PageContainer>
+        <Portlet title="Todos">
+          <div className="row">
+            <div className="col-md-12">
+              <Grid 
+                data={this.props.todos} 
+                cells={todoCells}
+                onRowSelect={this.onRowSelect.bind(this)}
+                selectedRow={this.state.selectedRow}
+                objectKey="_id" 
+              />
+              <CrudButtons 
+                onNew={this.onNew} 
+                onEdit={this.onEdit} 
+                onDelete={this.onDelete}
+                editDisabled={!this.state.selectedRow._id}
+                deleteDisabled={!this.state.selectedRow._id} 
+              />
+              {this.renderAlert()}          
+            </div>
           </div>
-        </div>
-      </Portlet>
+        </Portlet>
+      </PageContainer>
     );
   }  
 }
