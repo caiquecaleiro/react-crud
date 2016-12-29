@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import Grid from '../components/Grid';
 import Portlet from '../components/Portlet';
 import CrudButtons from '../components/CrudButtons';
+import Alert from '../components/Alert';
 import { todoCells } from '../constants/todoCells';
-import { fetchTodos } from '../actions/index';
+import { fetchTodos, deleteTodo } from '../actions/index';
 
 class GridContainer extends Component {
   constructor(props) {
@@ -14,6 +15,10 @@ class GridContainer extends Component {
     this.state = {
       selectedRow: {}
     };
+
+    this.onNew = this.onNew.bind(this);
+    this.onEdit = this.onEdit.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   componentWillMount() {
@@ -35,7 +40,18 @@ class GridContainer extends Component {
   }
 
   onDelete() {
-    console.log('delete');
+    this.props.deleteTodo(this.state.selectedRow);
+    this.setState({ selectedRow: {} });
+  }
+
+  renderAlert() {
+    if (this.props.error) {
+      return (      
+        <div className="margin-top-25px">
+          <Alert message={this.props.error} />
+        </div>
+      );
+    }
   }
 
   render() {
@@ -56,7 +72,8 @@ class GridContainer extends Component {
               onDelete={this.onDelete}
               editDisabled={!this.state.selectedRow._id}
               deleteDisabled={!this.state.selectedRow._id} 
-            />            
+            />
+            {this.renderAlert()}          
           </div>
         </div>
       </Portlet>
@@ -66,11 +83,16 @@ class GridContainer extends Component {
 
 GridContainer.propTypes = {
   todos: PropTypes.array.isRequired,
-  fetchTodos: PropTypes.func.isRequired
+  fetchTodos: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  error: PropTypes.string
 }
 
 function mapStateToProps(state) {
-  return { todos: state.todos.all };
+  return { 
+    todos: state.todos.all,
+    error: state.todos.error
+  };
 }
 
-export default connect(mapStateToProps, { fetchTodos })(GridContainer);
+export default connect(mapStateToProps, { fetchTodos, deleteTodo })(GridContainer);

@@ -34,7 +34,7 @@ CrudButtons.propTypes = {
   onDelete: PropTypes.func,
   newDisabled: PropTypes.bool,
   editDisabled: PropTypes.bool,
-  deleteDisabled: PropTypes.bool,
+  deleteDisabled: PropTypes.bool
 }
 
 export default CrudButtons;
