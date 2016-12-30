@@ -6,19 +6,7 @@ to run the server.
 
 ## The application
 
-**The user can look all the todos on this grid:**
-
-![View the Todos list](https://raw.githubusercontent.com/caiquecaleiro/react-crud/master/img/grid.png)
-
-**The user also can click on any row and then click on Edit or Delete options:**
-
-![Select a grid row](https://raw.githubusercontent.com/caiquecaleiro/react-crud/master/img/select-row.png)
-
-**The user can write a text description. He also may set the Todo as completed when editing:**
-
-![Edit a Todo](https://raw.githubusercontent.com/caiquecaleiro/react-crud/master/img/record.png)
-
-
+![The app gif animation](https://raw.githubusercontent.com/caiquecaleiro/react-crud/master/img/app.gif)
 
 ## Installation and usage
 
