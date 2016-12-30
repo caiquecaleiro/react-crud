@@ -4,9 +4,13 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
+import Moment from 'moment';
 
 import reducers from './reducers';
 import routes from './routes';
+
+// Set the current locale
+Moment.locale(window.navigator.userLanguage || window.navigator.language); 
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 

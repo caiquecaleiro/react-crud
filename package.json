@@ -19,6 +19,7 @@
   "homepage": "https://github.com/caiquecaleiro/react-crud#readme",
   "dependencies": {
     "axios": "^0.15.3",
+    "moment": "^2.17.1",
     "react": "^15.4.1",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",

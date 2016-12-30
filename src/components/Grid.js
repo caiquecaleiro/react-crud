@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
+import Moment from 'moment';
 
 import { Alert } from 'react-bootstrap';
+import { types } from '../constants/columnTypes';
 
 function renderRows({ data, objectKey, selectedRow, onRowSelect, cells }) {
   return data.map(object => {
@@ -9,10 +11,26 @@ function renderRows({ data, objectKey, selectedRow, onRowSelect, cells }) {
         key={object[objectKey]} 
         onClick={() => setSelectedRow(object, selectedRow, onRowSelect)} 
         className={`${selectedRow === object ? 'selected-row' : ''}`}>
-        {cells.map(cell => <td key={cell.name}>{object[cell.value]}</td>)}
+        {cells.map(cell => {
+          return (
+            <td key={cell.name}>
+              {validateValue(object[cell.value], cell)}
+            </td>
+          );
+        })}
       </tr>
     );
   });
+}
+
+function validateValue(value, { type }) {
+  switch (type) {
+    case types.BOOLEAN:
+      return value ? 'Yes' : 'No';
+    case types.TIMESTAMP: 
+      return value ? Moment(new Date(value)).format('L LTS') : '';
+  }
+  return value;
 }
 
 function renderHeaderCells({ cells }) {
