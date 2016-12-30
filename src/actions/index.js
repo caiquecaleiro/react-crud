@@ -16,9 +16,19 @@ export function fetchTodos() {
   return (dispatch) => {
     axios.get(`${API_URL}/todos`)
       .then(response => {
+        const todos = response.data.todos;
+        
+        todos.map(todo => {
+          todo.completed = todo.completed? 'Yes' : 'No';
+          
+          if (todo.completedAt) {
+            todo.completedAt = new Date(todo.completedAt).toLocaleString('pt-BR');
+          }
+        });
+
         dispatch({ 
           type: FETCH_TODOS,
-          payload: response.data.todos
+          payload: todos
         });
       })
       .catch(error => {
