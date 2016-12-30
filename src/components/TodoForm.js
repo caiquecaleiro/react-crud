@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router';
 
 import Input from './Input';
+import Checkbox from './Checkbox';
 
 class TodoForm extends Component {
   render() {
@@ -21,7 +22,17 @@ class TodoForm extends Component {
               component={Input}
             />
           </div>
-          <div className="col-md-12"> 
+          <div className="col-xs-12 col-sm-6 col-md-6"> 
+            <div className="margin-top-30px">
+              <Field
+                name="completed"
+                label="Completed"
+                disabled={this.props.disableCompleted}
+                component={Checkbox}
+              />
+            </div>
+          </div>
+          <div className="col-xs-12 col-sm-12 col-md-12"> 
             <button type="submit" className="btn btn-primary">Save</button>
             <Link to= "/" className="btn btn-primary">Cancel</Link>
           </div>
@@ -33,7 +44,8 @@ class TodoForm extends Component {
 
 TodoForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  disableCompleted: PropTypes.bool.isRequired
 };
 
 function validate(values) {

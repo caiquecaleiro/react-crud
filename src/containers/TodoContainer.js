@@ -16,9 +16,10 @@ class TodoContainer extends Component {
     this.props.createTodo(props);
   }
 
-  handleInitialize({ text }) {
+  handleInitialize({ text, completed }) {
     this.props.initialize('todo', {
-      text
+      text,
+      completed
     });
   }
 
@@ -51,7 +52,10 @@ class TodoContainer extends Component {
       <PageContainer>
         <Portlet title="Todo">
           <div>
-            <TodoForm onSubmit={this.onSubmit.bind(this)} />
+            <TodoForm 
+              onSubmit={this.onSubmit.bind(this)} 
+              disableCompleted={!this.props.todo._id}
+            />
           </div>
            {this.renderAlert()}         
         </Portlet>

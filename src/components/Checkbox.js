@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 
-function Checkbox({ input, label }) {
+function Checkbox({ input, label, disabled }) {
   return (
     <div className="form-group">
       <label className="mt-checkbox">
-        <input {...input} type="checkbox" /> {label}
+        <input type="checkbox" disabled={disabled} checked={input.value} {...input} /> 
+        {label}
         <span></span>
       </label>
     </div>
@@ -14,6 +15,7 @@ function Checkbox({ input, label }) {
 Checkbox.propTypes = {
   input: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired
 };
 
 export default Checkbox;
