@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import { Alert } from 'react-bootstrap';
+
 function renderRows({ data, objectKey, selectedRow, onRowSelect, cells }) {
   return data.map(object => {
     return (
@@ -24,6 +26,16 @@ function setSelectedRow(object, selectedRow, onRowSelect) {
   onRowSelect(object);
 }
 
+function renderAlert({ data }) {
+  if (data.length === 0) {
+    return (
+      <Alert bsStyle="info">
+        <strong>Heads up!</strong> There is no record available.
+      </Alert> 
+    );
+  }
+}
+
 function Grid(props) {
   return (
     <div className="row">
@@ -40,6 +52,7 @@ function Grid(props) {
             </tbody>
           </table>
         </div>
+        {renderAlert(props)}
       </div>
     </div>
   );

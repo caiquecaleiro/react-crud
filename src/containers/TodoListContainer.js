@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Alert } from 'react-bootstrap';
 
 import Grid from '../components/Grid';
 import Portlet from '../components/Portlet';
 import CrudButtons from '../components/CrudButtons';
-import Alert from '../components/Alert';
 import PageContainer from '../components/PageContainer';
 import { todoCells } from '../constants/todoCells';
 import { fetchTodos, deleteTodo } from '../actions/index';
@@ -56,7 +56,9 @@ class TodoListContainer extends Component {
     if (this.props.error) {
       return (      
         <div className="margin-top-25px">
-          <Alert message={this.props.error} />
+          <Alert bsStyle="danger">
+            <strong>Oops!</strong> {this.props.error}
+          </Alert>
         </div>
       );
     }

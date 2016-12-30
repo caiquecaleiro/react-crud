@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { initialize } from 'redux-form';
+import { Alert } from 'react-bootstrap';
 
 import PageContainer from '../components/PageContainer';
 import Portlet from '../components/Portlet';
 import TodoForm from '../components/TodoForm';
-import Alert from '../components/Alert';
 import { fetchTodo, createTodo, updateTodo } from '../actions/index';
 
 class TodoContainer extends Component {
@@ -38,7 +38,9 @@ class TodoContainer extends Component {
     if (this.props.error) {
       return (      
         <div className="margin-top-25px">
-          <Alert message={this.props.error} />
+          <Alert bsStyle="danger">
+            <strong>Oops!</strong> {this.props.error}
+          </Alert>
         </div>
       );
     }
