@@ -8,6 +8,9 @@ to run the server.
 
 ![The app gif animation](https://raw.githubusercontent.com/caiquecaleiro/react-crud/master/img/app.gif)
 
+## Angular 2 version
+Check [this repository](https://github.com/caiquecaleiro/angular-crud) if you want to see this app in Angular 2.
+
 ## Installation and usage
 
 Install the app dependencies:
